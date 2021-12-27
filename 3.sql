@@ -1,6 +1,3 @@
---atividade 3
--- validar um cpf
- -- retorna 1 para true e 0 para false
  create or replace function validaPrimeiroDigito(p_cpf in varchar, p_verificador varchar) return number
  is
     v_cpf_numeral number;
@@ -61,27 +58,23 @@
  v_flag number;
  begin
   v_aux := substr(p_cpf, 1, 9);
-  begin
+  
     V_FLAG := validaPrimeiroDigito(v_aux, substr(p_cpf, 10,1));
-  end;
+
   -- se a primeira validação falhar nem adianta continuar
   if v_flag = 0 then
     return 0;
 end if;
  -- a primeira validacao deu certo
  v_aux := substr(p_cpf, 1, 10);
- begin
  V_flag := validaSegundoDigito(v_aux, substr(p_cpf, 11,1));
- end;
- if(v_flag = 1) then
-    return 1;
-end if;
-return 0;
+ 
+ return v_flag;
  end;
  
  
  
  variable teste number;
-execute :teste := validaCpf('INSIRIR_CPF');
+execute :teste := validaCpf('insere CPF');
 
 print teste;
