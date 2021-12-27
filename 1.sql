@@ -9,3 +9,8 @@ begin
     end if;
     return 0;
 end;
+-- testando
+variable v_numero number;
+execute :v_numero := ehpar(5);
+
+print v_numero;
